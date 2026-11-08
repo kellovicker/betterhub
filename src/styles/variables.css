@@ -1,0 +1,73 @@
+/* Design tokens. Change the look of the whole app here. */
+:root {
+  /* brand */
+  --brand-500: #7c6cf5;
+  --brand-600: #5a4bd8;
+  --brand-700: #3a2fa6;
+  --accent: #f0b44c;
+  --accent-ink: #1a1405;
+
+  /* status */
+  --success: #3ddc97;
+  --success-bg: rgba(61, 220, 151, 0.12);
+  --warning: #f0a53c;
+  --warning-bg: rgba(240, 165, 60, 0.12);
+
+  /* typography */
+  --font-display: "Space Grotesk", system-ui, sans-serif;
+  --font-body: "Inter", system-ui, sans-serif;
+  --text-xs: 0.75rem;
+  --text-sm: 0.875rem;
+  --text-md: 1rem;
+  --text-lg: 1.25rem;
+  --text-xl: 1.5rem;
+  --text-2xl: 2.5rem;
+
+  /* spacing & shape */
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 20px;
+  --space-6: 28px;
+  --radius-sm: 10px;
+  --radius-md: 18px;
+  --radius-lg: 28px;
+  --radius-pill: 999px;
+
+  /* layout */
+  --page-max: 520px;
+  --nav-height: 76px;
+
+  /* motion */
+  --ease: cubic-bezier(0.2, 0.8, 0.2, 1);
+  --speed: 180ms;
+}
+
+/* dark (default) */
+:root,
+[data-theme="dark"] {
+  --bg: #0a0a14;
+  --surface: #12121f;
+  --surface-2: #1a1a2b;
+  --border: #25253a;
+  --text: #f3f3fa;
+  --text-muted: #8a8aa6;
+  --glow: rgba(124, 108, 245, 0.35);
+  --wallet-from: #5a4bd8;
+  --wallet-to: #3f3496;
+  --shadow: 0 10px 30px rgba(0, 0, 0, 0.45);
+}
+
+[data-theme="light"] {
+  --bg: #f5f5fb;
+  --surface: #ffffff;
+  --surface-2: #eeeef8;
+  --border: #dedef0;
+  --text: #14142b;
+  --text-muted: #6a6a88;
+  --glow: rgba(124, 108, 245, 0.25);
+  --wallet-from: #6a5bea;
+  --wallet-to: #4a3dbb;
+  --shadow: 0 10px 30px rgba(58, 47, 166, 0.12);
+}
