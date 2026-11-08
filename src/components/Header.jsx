@@ -9,7 +9,7 @@ export default function Header({ bare = false }) {
     <header className="header">
       <div className="logo">
         <span className="logo__mark"><Mail size={20} /><span className="logo__lock"><Lock size={15} /></span></span>
-        Get Your OTP
+        BetterHub
       </div>
       {!bare && (
         <nav className="topnav" aria-label="Main">
