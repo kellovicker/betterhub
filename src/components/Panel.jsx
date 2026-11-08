@@ -22,7 +22,7 @@ export default function Panel({ k }) {
   const [err, setErr] = useState("");
   const [nf, setNf] = useState(() => ld("notif", { o: 1, w: 1, p: 0 }));
   const [tfa, setTfa] = useState(() => !!ld("tfa", 0));
-  const key = useMemo(() => { let v = ld("apikey", null); if (!v) { v = "gyo_live_" + rid() + rid() + rid(); sv("apikey", v); } return v; }, []);
+  const key = useMemo(() => { let v = ld("apikey", null); if (!v) { v = "bh_live_" + rid() + rid() + rid(); sv("apikey", v); } return v; }, []);
   const code = ((user.name || "user").split(" ")[0].toUpperCase().replace(/[^A-Z]/g, "").slice(0, 6) || "USER") + "10";
 
   const close = () => setModal(null);

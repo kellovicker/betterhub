@@ -14,7 +14,7 @@ export default function Services() {
       <h1 className="page__title">All Services</h1>
       <label className="search">
         <Search size={20} />
-        <input value={q} onChange={(e) => setQ(e.target.value)} placeholder="Search numbers, VPN, proxies…" />
+        <input value={q} onChange={(e) => setQ(e.target.value)} placeholder="Search WhatsApp, eSIMs, gifting, VPN…" />
       </label>
       {list.length === 0 ? (
         <p className="empty">No service matches “{q}”. Try a different word.</p>

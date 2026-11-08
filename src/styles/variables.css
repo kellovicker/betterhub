@@ -1,11 +1,11 @@
 /* Design tokens. Change the look of the whole app here. */
 :root {
   /* brand */
-  --brand-500: #7c6cf5;
-  --brand-600: #5a4bd8;
-  --brand-700: #3a2fa6;
-  --accent: #f0b44c;
-  --accent-ink: #1a1405;
+  --brand-500: #8434f9;
+  --brand-600: #6a24d8;
+  --brand-700: #4a14a6;
+  --accent: #ffffff;
+  --accent-ink: #4a14a6;
 
   /* status */
   --success: #3ddc97;
@@ -47,27 +47,29 @@
 /* dark (default) */
 :root,
 [data-theme="dark"] {
-  --bg: #0a0a14;
-  --surface: #12121f;
-  --surface-2: #1a1a2b;
-  --border: #25253a;
-  --text: #f3f3fa;
-  --text-muted: #8a8aa6;
-  --glow: rgba(124, 108, 245, 0.35);
-  --wallet-from: #5a4bd8;
-  --wallet-to: #3f3496;
+  --brand-500: #9548fb;
+  --bg: #0b0816;
+  --surface: #130f22;
+  --surface-2: #1c1630;
+  --border: #2a2145;
+  --text: #f4f1fb;
+  --text-muted: #9189ab;
+  --glow: rgba(149, 72, 251, 0.38);
+  --wallet-from: #7a2ee6;
+  --wallet-to: #4a14a6;
   --shadow: 0 10px 30px rgba(0, 0, 0, 0.45);
 }
 
 [data-theme="light"] {
-  --bg: #f5f5fb;
+  --brand-500: #8434f9;
+  --bg: #f7f4fe;
   --surface: #ffffff;
-  --surface-2: #eeeef8;
-  --border: #dedef0;
-  --text: #14142b;
-  --text-muted: #6a6a88;
-  --glow: rgba(124, 108, 245, 0.25);
-  --wallet-from: #6a5bea;
-  --wallet-to: #4a3dbb;
-  --shadow: 0 10px 30px rgba(58, 47, 166, 0.12);
+  --surface-2: #efe8fc;
+  --border: #e2d9f6;
+  --text: #17102e;
+  --text-muted: #6e6788;
+  --glow: rgba(132, 52, 249, 0.25);
+  --wallet-from: #8d3ff8;
+  --wallet-to: #5e1ccc;
+  --shadow: 0 10px 30px rgba(74, 20, 166, 0.14);
 }

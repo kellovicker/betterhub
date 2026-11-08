@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { User, Wallet, Receipt, ClipboardList, KeyRound, Users, Store, HelpCircle, MessageCircle, Bell, ShieldCheck, ChevronRight } from "lucide-react";
+import { User, Wallet, Receipt, ClipboardList, KeyRound, Users, Store, HelpCircle, MessageCircle, Bell, ShieldCheck, ChevronRight, Sun, Moon } from "lucide-react";
 import { useApp } from "../context/AppContext.jsx";
 
 const menu = [
@@ -9,13 +9,20 @@ const menu = [
 ];
 
 export default function Account() {
-  const { user, setModal, logout } = useApp();
+  const { user, setModal, logout, theme, toggleTheme } = useApp();
   return (
     <div className="narrow">
       <h1 className="page__title">Account</h1>
       <div className="profile">
         <div className="avatar">{user.name[0]}</div>
         <div><p className="profile__name">{user.name}</p><p className="profile__email">{user.email}</p></div>
+      </div>
+      <div className="row">
+        <span>Appearance</span>
+        <button className="theme-toggle" onClick={toggleTheme} aria-label={`Switch to ${theme === "dark" ? "light" : "dark"} mode`}>
+          <span className={theme === "light" ? "is-on" : ""}><Sun size={16} /></span>
+          <span className={theme === "dark" ? "is-on" : ""}><Moon size={16} /></span>
+        </button>
       </div>
       <ul className="menu">
         {menu.map(([label, Icon, to]) => (

@@ -16,7 +16,13 @@ export function AppProvider({ children }) {
   const [txs, setTxs] = useState(() => ld("txs", []));
   const [modal, setModal] = useState(null); // { type: "svc", n } | { type: "fund" } | { type: "panel", k }
   const [toastMsg, toast] = useState("");
+  const [theme, setTheme] = useState(() => localStorage.getItem("theme-v2") || "light");
 
+  useEffect(() => {
+    document.documentElement.setAttribute("data-theme", theme);
+    try { localStorage.setItem("theme-v2", theme); } catch {}
+  }, [theme]);
+  const toggleTheme = () => setTheme((t) => (t === "dark" ? "light" : "dark"));
   useEffect(() => sv("session", user), [user]);
   useEffect(() => sv("orders", orders), [orders]);
   useEffect(() => sv("txs", txs), [txs]);
@@ -41,7 +47,7 @@ export function AppProvider({ children }) {
   const complete = (id) => setOrders((x) => x.map((o) => (o.id === id ? { ...o, status: "Completed" } : o)));
 
   return (
-    <Ctx.Provider value={{ user, orders, txs, modal, setModal, toast, toastMsg, login, logout, updateUser, fund, buy, complete }}>
+    <Ctx.Provider value={{ theme, toggleTheme, user, orders, txs, modal, setModal, toast, toastMsg, login, logout, updateUser, fund, buy, complete }}>
       {children}
     </Ctx.Provider>
   );

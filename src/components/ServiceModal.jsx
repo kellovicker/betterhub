@@ -4,8 +4,6 @@ import Sheet from "./Sheet.jsx";
 import { useApp, naira, rid } from "../context/AppContext.jsx";
 import { services } from "../data/services.js";
 
-const PREFIX = ["+234", "+233", "+44", "+1", "+91"];
-
 export default function ServiceModal({ n }) {
   const { user, buy, complete, setModal, toast } = useApp();
   const nav = useNavigate();
@@ -30,15 +28,15 @@ export default function ServiceModal({ n }) {
       detail: [...picks.map((p) => p[0]), c.qty && "×" + (+qty).toLocaleString(), c.inp && inp.trim()].filter(Boolean).join(" · "),
     };
     buy(o); // replace with POST /orders
-    setDone({ o, num: n === 0 ? `${PREFIX[sel[0]]} ${Math.floor(Math.random() * 9e8) + 1e8}` : "" });
-    if (n === 0) setTimeout(() => { complete(o.id); setCode(String(Math.floor(Math.random() * 9e5) + 1e5)); }, 4000);
+    setDone({ o, num: c.num ? `${c.prefix} ${Math.floor(Math.random() * 9e8) + 1e8}` : "" });
+    if (c.num) setTimeout(() => { complete(o.id); setCode(String(Math.floor(Math.random() * 9e5) + 1e5)); }, 4000);
   };
 
   if (done) {
     return (
-      <Sheet title={n === 0 ? "Your number" : "Order placed"} icon={S.icon}>
+      <Sheet title={c.num ? "Your number" : "Order placed"} icon={S.icon}>
         <div className="done">
-          {n === 0 ? (
+          {c.num ? (
             <>
               <p className="muted">Use this number now. We’re waiting for the SMS.</p>
               <p className="big">{done.num}</p>
@@ -54,7 +52,7 @@ export default function ServiceModal({ n }) {
             </>
           )}
         </div>
-        <button className="btn btn--pri" onClick={() => { setModal(null); if (n !== 0) nav("/orders"); }}>{n === 0 ? "Close" : "View orders"}</button>
+        <button className="btn btn--pri" onClick={() => { setModal(null); if (!c.num) nav("/orders"); }}>{c.num ? "Close" : "View orders"}</button>
         <p className="note">Demo: orders are simulated until the backend and providers are connected.</p>
       </Sheet>
     );
