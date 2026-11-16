@@ -1,13 +1,13 @@
 import { useState } from "react";
-import { Search } from "lucide-react";
-import StatusBadge from "../components/StatusBadge.jsx";
+import { ArrowRight, Search } from "lucide-react";
+import { SvcIcon } from "../components/icons.jsx";
 import { services } from "../data/services.js";
 import { useApp } from "../context/AppContext.jsx";
 
 export default function Services() {
   const { setModal } = useApp();
   const [q, setQ] = useState("");
-  const list = services.map((s, n) => ({ ...s, n })).filter((s) => (s.title + " " + s.desc).toLowerCase().includes(q.toLowerCase()));
+  const list = services.map((s, n) => ({ ...s, n })).filter((s) => (s.title + " " + s.desc).toLowerCase().includes(q.trim().toLowerCase()));
 
   return (
     <>
@@ -19,12 +19,13 @@ export default function Services() {
       {list.length === 0 ? (
         <p className="empty">No service matches “{q}”. Try a different word.</p>
       ) : (
-        <div className="card-grid">
-          {list.map(({ id, n, title, desc, icon: Icon, status }) => (
-            <button key={id} className="card" onClick={() => setModal({ type: "svc", n })}>
-              <div className="card__top"><span className="card__icon"><Icon size={24} /></span><StatusBadge status={status} /></div>
-              <h3 className="card__title">{title}</h3>
-              <p className="card__desc">{desc}</p>
+        <div className="u-grid u-grid--2">
+          {list.map(({ id, n, title, desc }) => (
+            <button key={id} className="u-svc u-svc--lg" onClick={() => setModal({ type: "svc", n })}>
+              <span className="u-sic"><SvcIcon n={n} size={38} /></span>
+              <span className="u-go"><ArrowRight size={14} /></span>
+              <b>{title}</b>
+              <small>{desc}</small>
             </button>
           ))}
         </div>

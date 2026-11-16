@@ -8,14 +8,14 @@ export const items = [
   { to: "/account", label: "Account", icon: User },
 ];
 
-// Mobile only: hidden on desktop, where the Header shows the same links at the top.
+// Floating pill on phones; a row of pills at the top on desktop.
 export default function BottomNav() {
   return (
-    <nav className="nav" aria-label="Main">
+    <nav className="u-nav" aria-label="Main">
       {items.map(({ to, label, icon: Icon, end }) => (
-        <NavLink key={to} to={to} end={end} className={({ isActive }) => "nav__item" + (isActive ? " is-active" : "")}>
-          <span className="nav__icon"><Icon size={22} /></span>
-          {label}
+        <NavLink key={to} to={to} end={end} className={({ isActive }) => "u-ni" + (isActive ? " on" : "")}>
+          <Icon size={24} />
+          <span>{label}</span>
         </NavLink>
       ))}
     </nav>

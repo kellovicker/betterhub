@@ -37,12 +37,12 @@ export function AppProvider({ children }) {
   const updateUser = (p) => setUser((u) => ({ ...u, ...p }));
   const fund = (a) => {
     setUser((u) => ({ ...u, bal: u.bal + a }));
-    setTxs((t) => [{ t: "Wallet funding", a, d: today() }, ...t]);
+    setTxs((t) => [{ t: "Wallet funding", a, d: today(), ts: Date.now() }, ...t]);
   };
   const buy = (o) => {
     setUser((u) => ({ ...u, bal: u.bal - o.price }));
-    setOrders((x) => [{ ...o, status: "Processing", date: today() }, ...x]);
-    setTxs((t) => [{ t: "Purchase: " + o.title, a: -o.price, d: today() }, ...t]);
+    setOrders((x) => [{ ...o, status: "Processing", date: today(), ts: Date.now() }, ...x]);
+    setTxs((t) => [{ t: "Purchase: " + o.title, a: -o.price, d: today(), ts: Date.now() }, ...t]);
   };
   const complete = (id) => setOrders((x) => x.map((o) => (o.id === id ? { ...o, status: "Completed" } : o)));
 

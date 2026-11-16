@@ -1,26 +1,29 @@
-import { NavLink } from "react-router-dom";
-import { Bell } from "lucide-react";
-import { items } from "./BottomNav.jsx";
+import { Link } from "react-router-dom";
+import { Bell, Sun, Moon } from "lucide-react";
+import { useApp } from "../context/AppContext.jsx";
 
 export default function Header({ bare = false }) {
+  const { theme, toggleTheme, user, orders, setModal } = useApp();
+  const processing = orders.filter((o) => o.status === "Processing").length;
   return (
-    <header className="header">
-      <div className="logo">
-        <img className="logo__img logo__img--l" src="/logo-light.png" alt="" width="53" height="44" />
-        <img className="logo__img logo__img--d" src="/logo-dark.png" alt="" width="53" height="44" />
-        Better Hub
+    <header className="u-hero">
+      <div className="u-brand">
+        <img className="u-logo" src="/logo-dark.png" alt="" width="46" height="38" />
+        <div><b>Better Hub</b><small>Secure • Fast • Reliable</small></div>
       </div>
-      {!bare && (
-        <nav className="topnav" aria-label="Main">
-          {items.map(({ to, label, icon: Icon, end }) => (
-            <NavLink key={to} to={to} end={end} className={({ isActive }) => (isActive ? "is-active" : "")}>
-              <Icon size={18} />{label}
-            </NavLink>
-          ))}
-        </nav>
-      )}
-      <div className="header__actions">
-        {!bare && <button className="icon-btn" aria-label="Notifications"><Bell size={20} /></button>}
+      <div className="u-hact">
+        <button className="u-toggle" onClick={toggleTheme} aria-label={`Switch to ${theme === "dark" ? "light" : "dark"} mode`}>
+          <span className={theme === "light" ? "on" : ""}><Sun size={18} /></span>
+          <span className={theme === "dark" ? "on" : ""}><Moon size={18} /></span>
+        </button>
+        {!bare && (
+          <>
+            <button className="u-bell" aria-label="Notifications" onClick={() => setModal({ type: "panel", k: "Notifications" })}>
+              <Bell size={24} />{processing > 0 && <i>{processing}</i>}
+            </button>
+            <Link className="u-avatar" to="/account" aria-label="Account">{user?.name?.[0]?.toUpperCase() ?? "?"}<i /></Link>
+          </>
+        )}
       </div>
     </header>
   );
